@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+{
+
+}
+namespace Practica1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int opcion = 0;
+            Estudiante estudiante = null;
+
+            Console.WriteLine("SELECCIONA UNA OPCION: ");
+            Console.WriteLine("1. AGREGA UN ESTUDIANTE");
+            Console.WriteLine("2. CONSULTAR ESTUDIANTE");
+            Console.WriteLine("3. SALIR");
+
+            Console.Write("Opcion: ");
+            opcion = Convert.ToInt32(Console.ReadLine());
+
+            switch (opcion)
+            {
+                case 1:
+                    estudiante = CapturarEstudiante();
+                    break;
+            }
+
+            Console.ReadLine();
+        }
+
+        static Estudiante CapturarEstudiante()
+        {
+            int num_materias;
+
+            Console.Write("Ingrese el nombre del estudiante: ");
+            string nombre = Console.ReadLine();
+
+            Console.Write("Ingrese la carrera del estudiante: ");
+            string carrera = Console.ReadLine();
+
+            Console.Write("Cuantas materias cursa: ");
+            num_materias = Convert.ToInt32(Console.ReadLine());
+
+
+            int[] calificaciones = new int[num_materias];
+
+            // Creamos el objeto del tipo Estudiante
+            Estudiante estudiante_nuevo = new Estudiante(nombre, carrera, calificaciones);
+
+            for (int i = 0; i < num_materias; i++)
+            {
+                Console.Write("Ingrese la calificacion de la materia #" + (i + 1) + ": ");
+                int calificacion = Convert.ToInt32(Console.ReadLine());
+
+                estudiante_nuevo.CapturarCalificacion(calificacion);
+            }
+
+            //Este es solo para probar que se capturen las calificaciones NO VA AQUI 
+            //Console.WriteLine("Promedio del estudiante: " + estudiante_nuevo.ObtenerPromedio());
+
+            return estudiante_nuevo;
+        }
+    }
+}
