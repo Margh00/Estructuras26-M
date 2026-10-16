@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Practica1
+{
+    internal class Grupo
+    {
+        string NombreGrupo;
+        string ClaveGrupo;
+        Estudiante[] Estudiantes;
+
+        public Grupo(string NombreGrupo, string ClaveGrupo, Estudiante[] Estudiantes)
+        {
+            this.NombreGrupo = NombreGrupo;
+            this.ClaveGrupo = ClaveGrupo;
+            this.Estudiantes = Estudiantes;
+        }
+
+        public double ObtenerPromedioGrupo()
+        {
+            double suma = 0;
+
+            for (int i = 0; i < Estudiantes.Length; i++)
+            {
+                suma += Estudiantes[i].ObtenerPromedio();
+            }
+
+            return suma / Estudiantes.Length;
+        }
+
+        public Estudiante[] ObtenerAlumnosRegulares()
+        {
+            List<Estudiante> regulares = new List<Estudiante>();
+
+            for (int i = 0; i < Estudiantes.Length; i++)
+            {
+                if (Estudiantes[i].ObtenerPromedio() >= 70)
+                {
+                    regulares.Add(Estudiantes[i]);
+                }
+            }
+
+            return regulares.ToArray();
+        }
+
+        public Estudiante[] ObtenerAlumnosIrregulares()
+        {
+            List<Estudiante> irregulares = new List<Estudiante>();
+
+            for (int i = 0; i < Estudiantes.Length; i++)
+            {
+                if (Estudiantes[i].ObtenerPromedio() < 70)
+                {
+                    irregulares.Add(Estudiantes[i]);
+                }
+            }
+
+            return irregulares.ToArray();
+        }
+    }
+}

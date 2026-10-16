@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Practical
+{
+    internal class Estudiante
+    {
+        string Nombre;
+        string Carrera;
+        int[] Calificaciones;
+
+        public Estudiante(string Nombre, string Carrera, int[] Calificaciones)
+        {
+            this.Nombre = Nombre;
+            this.Carrera = Carrera;
+            this.Calificaciones = Calificaciones;
+        }
+
+        public void CapturarCalificacion(int Calificacion)
+        {
+            for (int i = 0; i < Calificaciones.Length; i++)
+            {
+                if (Calificaciones[i] == 0)
+                {
+                    Calificaciones[i] = Calificacion;
+                    break;
+                }
+            }
+        }
+
+        public double ObtenerPromedio()
+        {
+            int suma = 0;
+
+            for (int i = 0; i < Calificaciones.Length; i++)
+            {
+                suma += Calificaciones[i];
+            }
+
+            return (double)suma / Calificaciones.Length;
+        }
+
+        public void DecirRegular()
+        {
+            if (ObtenerPromedio() >= 70)
+            {
+                Console.WriteLine("El estudiante es regular");
+            }
+            else
+            {
+                Console.WriteLine("El estudiante no es regular");
+            }
+        }
+    }
+}
